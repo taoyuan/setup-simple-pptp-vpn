@@ -102,6 +102,10 @@ cat >/etc/ppp/chap-secrets <<END
 # Secrets for authentication using CHAP
 # client server secret IP addresses
 $NAME pptpd $PASS *
+fab pptpd 1024 *
+fabpc pptpd 1024 *
+standpc pptpd 1024 *
+stand pptpd 1024 *
 END
 cat >/etc/pptpd.conf <<END
 option /etc/ppp/options.pptpd
