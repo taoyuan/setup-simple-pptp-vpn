@@ -36,7 +36,7 @@ Allow the following through the firewall ("security group")
 Common
 ------
 
-    wget https://raw.github.com/viljoviitanen/setup-simple-pptp-vpn/master/setup.sh
+    wget https://raw.githubusercontent.com/fablol/setup-simple-pptp-vpn/master/setup.sh
     sudo sh setup.sh
 
 Let the script run. Take note if the server external ip address
