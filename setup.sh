@@ -130,6 +130,18 @@ novjccomp
 nologfd
 END
 
+cat >> /etc/sysctl.conf <<END
+net.ipv4.ip_forward=1
+END
+sysctl -p
+
+iptables -t nat -A POSTROUTING -o eth0 -j MASQUERADE
+
+cat >> /etc/rc.local <<END
+iptables -t nat -A POSTROUTING -o eth0 -j MASQUERADE
+exit 0
+END
+
 apt-get -y install wget || {
   echo "Could not install wget, required to retrieve your IP address." 
   exit 1
