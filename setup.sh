@@ -122,6 +122,8 @@ require-mschap-v2
 require-mppe-128
 ms-dns 8.8.8.8
 ms-dns 8.8.4.4
+ms-dns 208.67.222.123
+ms-dns 208.67.220.123
 proxyarp
 lock
 nobsdcomp 
@@ -141,6 +143,13 @@ cat >> /etc/rc.local <<END
 iptables -t nat -A POSTROUTING -o eth0 -j MASQUERADE
 exit 0
 END
+
+# For the majority of distributions you must load the nf_conntrack_proto_gre and nf_conntrack_pptp 
+# kernel modules for certain PPTP/VPN servers. This can be done with:
+modprobe nf_conntrack_pptp nf_conntrack_proto_gre
+
+# auto start pptpd
+sudo systemctl enable pptpd
 
 apt-get -y install wget || {
   echo "Could not install wget, required to retrieve your IP address." 
